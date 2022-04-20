@@ -5,7 +5,7 @@ import 'package:vazifa/core/constant/constant.dart';
 import 'package:vazifa/core/constant/sized_config.dart';
 
 class MyCard {
-  static Container cardShop() {
+  static Container cardShop(context, {isShow = false}) {
     return Container(
       width: getWidht(165),
       decoration: MyDeco.withGoogleButtonDeco(),
@@ -14,26 +14,36 @@ class MyCard {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: getHeight(133),
-              width: getHeight(133),
-              decoration: MyDeco.withImageDeco(
-                img: Constant.randomImage,
+            Padding(
+              padding: EdgeInsets.only(
+                top: getHeight(16),
+                bottom: getHeight(8),
+              ),
+              child: Container(
+                height: getHeight(133),
+                width: getHeight(133),
+                decoration: MyDeco.withImageDeco(
+                  img: Constant.randomImage,
+                ),
               ),
             ),
-            const Text(
+            Text(
               "FS - Nike Air Max 270 React...",
+              style: Theme.of(context).textTheme.headline1,
             ),
-            Padding(
-              padding: EdgeInsets.only(top: getHeight(4)),
-              child: Row(
-                children: [
-                  SvgPicture.asset(Constant.lock),
-                  SvgPicture.asset(Constant.lock),
-                  SvgPicture.asset(Constant.lock),
-                  SvgPicture.asset(Constant.lock),
-                  SvgPicture.asset(Constant.lock),
-                ],
+            Visibility(
+              visible: isShow,
+              child: Padding(
+                padding: EdgeInsets.only(top: getHeight(4)),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Constant.starYellow),
+                    SvgPicture.asset(Constant.starYellow),
+                    SvgPicture.asset(Constant.starYellow),
+                    SvgPicture.asset(Constant.starYellow),
+                    SvgPicture.asset(Constant.starYellow),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -41,8 +51,9 @@ class MyCard {
               height: getHeight(48),
               child: Padding(
                 padding: EdgeInsets.only(top: getHeight(16)),
-                child: const Text(
+                child: Text(
                   "\$299,43",
+                  style: Theme.of(context).textTheme.subtitle2,
                 ),
               ),
             ),

@@ -6,7 +6,7 @@ import 'package:vazifa/core/constant/sized_config.dart';
 import 'package:vazifa/core/widgets/big_button.dart';
 
 class RegisterView extends StatelessWidget {
-  RegisterView({Key? key}) : super(key: key);
+  const RegisterView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +99,14 @@ class RegisterView extends StatelessWidget {
                           "have a account? ",
                           style: Theme.of(context).textTheme.subtitle1,
                         ),
-                        Text(
-                          "Sign In",
-                          style: Theme.of(context).textTheme.subtitle2,
+                        InkWell(
+                          child: Text(
+                            "Sign In",
+                            style: Theme.of(context).textTheme.subtitle2,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                         ),
                       ],
                     ),

@@ -5,7 +5,7 @@ import 'package:vazifa/core/constant/sized_config.dart';
 import 'package:vazifa/core/data/my_data.dart';
 
 class HomepageComponents {
-  static SizedBox categoryBuilder() {
+  static SizedBox categoryBuilder(BuildContext context) {
     return SizedBox(
       height: getHeight(105),
       width: double.infinity,
@@ -32,7 +32,7 @@ class HomepageComponents {
                   child: Center(
                     child: Text(
                       MyData.categoryImg[__]["name"],
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.center,style: Theme.of(context).textTheme.subtitle1,
                     ),
                   ),
                 )

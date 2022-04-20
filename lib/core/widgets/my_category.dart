@@ -17,9 +17,19 @@ class MycategoryWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(category),
+        Text(
+          category,
+          style: Theme.of(
+            context,
+          ).textTheme.headline1!.copyWith(fontSize: 14),
+        ),
         InkWell(
-          child: Text(txButton),
+          child: Text(
+            txButton,
+            style: Theme.of(
+              context,
+            ).textTheme.subtitle2!.copyWith(fontSize: 14),
+          ),
           onTap: () => onT,
         )
       ],

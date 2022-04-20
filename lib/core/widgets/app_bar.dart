@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vazifa/core/components/my_cont.dart';
 import 'package:vazifa/core/constant/constant.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -23,15 +24,15 @@ class MyAppBar extends StatelessWidget {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 1,
-      // title: MyCont.searchContainer(),
+      title: MyCont.searchContainer(context),
       actions: [
         IconButton(
-          icon: SvgPicture.asset(Constant.lock),
+          icon: SvgPicture.asset(firstIcon),
           splashRadius: 20,
           onPressed: () {},
         ),
         IconButton(
-          icon: SvgPicture.asset(Constant.lock),
+          icon: SvgPicture.asset(lastIcon),
           splashRadius: 20,
           onPressed: () {},
         ),

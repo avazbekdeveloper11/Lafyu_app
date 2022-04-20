@@ -19,108 +19,127 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       // APPBAR
       appBar: MyAppBar(
-        firstIcon: Constant.lock,
-        lastIcon: Constant.lock,
+        firstIcon: Constant.favorite,
+        lastIcon: Constant.notification,
       ).build(context),
 
       // BODY
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: getHeight(238),
-              width: double.infinity,
-              child: PageView.builder(
-                controller: _pageController,
-                itemBuilder: (_, __) {
-                  return MyCont.pageContainer(img: Constant.randomImage);
-                },
-                itemCount: 5,
-              ),
-            ),
-            pageViewIndecator(pageController: _pageController),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: getWidht(16),
-                vertical: getHeight(15),
-              ),
-              child: MycategoryWidget(
-                  category: "Category", txButton: "More Category"),
-            ),
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: getHeight(238),
+                      width: double.infinity,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemBuilder: (_, __) {
+                          return MyCont.pageContainer(
+                              img: Constant.randomImage);
+                        },
+                        itemCount: 5,
+                      ),
+                    ),
+                    pageViewIndecator(pageController: _pageController),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getWidht(16),
+                        vertical: getHeight(15),
+                      ),
+                      child: MycategoryWidget(
+                        category: "Category",
+                        txButton: "More Category",
+                      ),
+                    ),
 
-            // Category Builder
-            HomepageComponents.categoryBuilder(),
+                    // Category Builder
+                    HomepageComponents.categoryBuilder(context),
 
-            // Flash Sale Banner
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: getWidht(16),
-                vertical: getHeight(15),
-              ),
-              child: MycategoryWidget(category: "Flash Sale"),
-            ),
+                    // Flash Sale Banner
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getWidht(16),
+                        vertical: getHeight(15),
+                      ),
+                      child: MycategoryWidget(category: "Flash Sale"),
+                    ),
 
-            // Flash Sale Builder
-            SizedBox(
-              height: getHeight(295),
-              width: double.infinity,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (_, __) {
-                  return Padding(
-                    padding: EdgeInsets.only(left: getWidht(16)),
-                    child: MyCard.cardShop(),
-                  );
-                },
-              ),
-            ),
+                    // Flash Sale Builder
+                    SizedBox(
+                      height: getHeight(295),
+                      width: double.infinity,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, __) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: getWidht(16)),
+                            child: MyCard.cardShop(context),
+                          );
+                        },
+                      ),
+                    ),
 
-            // Flash Sale Banner
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: getWidht(16),
-                vertical: getHeight(18),
-              ),
-              child: MycategoryWidget(category: "Mega Sale"),
-            ),
+                    // Flash Sale Banner
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getWidht(16),
+                        vertical: getHeight(18),
+                      ),
+                      child: MycategoryWidget(category: "Mega Sale"),
+                    ),
 
-            // Mega Sale Builder
-            SizedBox(
-              height: getHeight(295),
-              width: double.infinity,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (_, __) {
-                  return Padding(
-                    padding: EdgeInsets.only(left: getWidht(16)),
-                    child: MyCard.cardShop(),
-                  );
-                },
-              ),
-            ),
-            Container(
-              height: getHeight(206),
-              width: getWidht(343),
-              decoration: MyDeco.containerDeco(),
-            ),
-            SizedBox(
-              height: getHeight(612),
-              width: double.infinity,
-              child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  mainAxisExtent: getHeight(295),
+                    // Mega Sale Builder
+                    SizedBox(
+                      height: getHeight(295),
+                      width: double.infinity,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (_, __) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: getWidht(16)),
+                            child: MyCard.cardShop(context),
+                          );
+                        },
+                      ),
+                    ),
+                    // Reklama Container
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: getHeight(16),
+                        top: getHeight(9),
+                      ),
+                      child: Container(
+                        height: getHeight(206),
+                        width: getWidht(343),
+                        decoration: MyDeco.containerDeco(),
+                      ),
+                    ),
+                  ],
                 ),
-                itemBuilder: (_, __) {
-                  return MyCard.cardShop();
+              ],
+            ),
+          ),
+          // Grid Builder Card
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: getWidht(16)),
+            sliver: SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 13,
+                crossAxisSpacing: 13,
+                mainAxisExtent: getHeight(310),
+              ),
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return MyCard.cardShop(context, isShow: true);
                 },
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -17,7 +17,7 @@ class MyCont {
   }
 
   // SEARCH CONTAINER
-  static Container searchContainer() {
+  static Container searchContainer(BuildContext context) {
     return Container(
       width: getWidht(263),
       height: getHeight(46),
@@ -29,9 +29,14 @@ class MyCont {
               left: getWidht(17),
               right: getWidht(10),
             ),
-            child: SvgPicture.asset(Constant.lock),
+            child: SvgPicture.asset(Constant.searchMini),
           ),
-          Text("Search Product")
+          Text(
+            "Search Product",
+            style: Theme.of(
+              context,
+            ).textTheme.bodyText1!.copyWith(fontWeight: FontWeight.w500),
+          )
         ],
       ),
     );
